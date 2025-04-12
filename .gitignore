@@ -1,0 +1,9 @@
+venv/
+.env
+
+
+__pycache__/
+*_venv
+*vectorstore*
+.vscode
+knowledge/
