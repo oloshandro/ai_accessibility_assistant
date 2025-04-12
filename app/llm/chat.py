@@ -51,7 +51,7 @@ class RagGenerator:
                 self.vectorstore_path,
                 self.embeddings,
                 allow_dangerous_deserialization=True
-                ).as_retriever(search_type='similarity', search_kwargs={"k": 3})
+                ).as_retriever(search_type='similarity', search_kwargs={"k": 5})
         except Exception as e:
             print(f"Error initializing retriever: {e}")
             
