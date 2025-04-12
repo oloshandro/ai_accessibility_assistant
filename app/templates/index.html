@@ -6,6 +6,8 @@
     <!-- <title></title>Bot</title> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -13,12 +15,12 @@
 
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #d6eef8;
+            font-family: 'Inter', sans-serif;
+            background-color: #c1f7c4;
         }
 
         h1, h4 {
-            color: #333;
+            color: #3f3f3f;
         }
 
         #chat-container {
@@ -53,7 +55,7 @@
         }
 
         .userText {
-            background-color: #3498db;
+            background-color: #589D5C;
             color: #fff;
             align-self: flex-start; /* Changed to left */
             text-align: left; /* Changed to left */
@@ -61,10 +63,10 @@
         }
 
         .botText {
-            background-color: #252524;
-            color: #fff;
+            background-color: #d6d6d6;
+            color: #000000;
             align-self: flex-end; /* Changed to right */
-            text-align: right; /* Changed to right */
+            text-align: left; /* Changed to right */
             margin-left: auto; /* Added to shift bot message to the left */
         }
 
@@ -88,7 +90,7 @@
             width: 20%;
             padding: 8px;
             border: none;
-            background-color: #3498db;
+            background-color: #589D5C;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
@@ -100,8 +102,8 @@
 <body>
 
 <div id="chat-container">
-    <h1 align="center"><b>Accessibility Advisor</b></h1>
-    <h4 align="center"><b>Ask me about Accessibility in Chernihiv</b></h4>
+    <h1 align="center"><b>Чернігів без бар’єрний</b></h1>
+    <h4 align="center"><b>Запитай мене про доступність у Чернігові</b></h4>
     <div id="chatbox"></div>
     <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Type your question here...">
@@ -136,7 +138,10 @@ function getBotResponse() {
         return response.json();
     })
     .then(data => {
-        var botHtml = '<div class="message botText"><p>' + data.response + "</p></div>";
+        var dirtyHtml = marked.parse(data.response);
+        var cleanHtml = DOMPurify.sanitize(dirtyHtml);
+        var botHtml = '<div class="message botText">' + cleanHtml + '</div>';
+
         document.getElementById("chatbox").innerHTML += botHtml;
         document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
     })
