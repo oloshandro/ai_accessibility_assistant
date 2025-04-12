@@ -12,4 +12,5 @@ class Config:
 
 
     OPENAI_MODEL = 'gpt-4o'
-    TEMPERATURE = 0.7
+    MODEL = 'gemini-2.0-flash'
+    TEMPERATURE = 0.4

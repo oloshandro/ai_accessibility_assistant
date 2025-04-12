@@ -3,7 +3,8 @@ from app.llm.prompt_helpers import create_rag_chain
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 
@@ -59,20 +60,24 @@ class RagGenerator:
 
 
 class AccessibilityAIChat(RagGenerator):
-    def __init__(self, data_path, chroma_path, model, temperature):
+    def __init__(self, data_path, chroma_path, model, temperature, api_key):
         super().__init__(data_path, chroma_path)
 
         self.model = model
         self.temperature = temperature
-        self.llm = self.load_model(self.model, self.temperature)
+        self.api_key = api_key
+        self.llm = self.load_model(self.model, self.temperature, self.api_key)
         
     
     @staticmethod
-    def load_model(model, temperature):
-        return ChatOpenAI(
-            model=model, 
-            temperature=temperature,
-            verbose=True)
+    def load_model(model, temperature, api_key):
+        # return ChatOpenAI(
+        #     model=model, 
+        #     temperature=temperature,
+        #     verbose=True)
+        return ChatGoogleGenerativeAI(model=model,
+                                      temperature=temperature,
+                                      google_api_key=api_key)
     
 
     def process_chat(self, prompt, user_input, session_id, session_history):
