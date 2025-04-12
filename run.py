@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv, find_dotenv
 import os
 from app.llm.chat import AccessibilityAIChat
-from app.llm.prompt_helpers import prompt, create_rag_chain
+from app.llm.prompt_helpers import prompt
 from config import Config
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
