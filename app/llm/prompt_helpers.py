@@ -16,6 +16,9 @@ Use only the provided {context} to answer clearly and helpfully. Prioritize info
 - Parking for people with disabilities
 - Public transport access
 - Seating availability and quiet spaces
+- a Braille sign
+- Tactile paving
+- Wide doors for wheelchair access
 
 Throughout the conversation:
 - Respond only in Ukrainian.
