@@ -9,10 +9,10 @@ from langchain_core.chat_history import BaseChatMessageHistory
 
 
 
-api_key=os.environ.get("GEMINI_API_KEY")
+g_api_key=os.environ.get("GOOGLE_API_KEY")
 api_key=os.environ.get("OPENAI_API_KEY")
 config = Config()
-connector = AccessibilityAIChat(config.DATA_PATH, config.VECTORSTORE_PATH, config.MODEL, config.TEMPERATURE, api_key)
+connector = AccessibilityAIChat(config.DATA_PATH, config.VECTORSTORE_PATH, config.MODEL, config.TEMPERATURE, g_api_key)
 connector.initialize()
 store = {}
 
