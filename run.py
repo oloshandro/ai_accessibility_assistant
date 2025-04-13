@@ -1,16 +1,16 @@
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv, find_dotenv
 import os
-from app.llm.chat import AccessibilityAIChat
-from app.llm.prompt_helpers import prompt
+from app.models.chat import AccessibilityAIChat
+from app.models.prompt_helpers import prompt
 from config import Config
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 
 
-_ = load_dotenv(find_dotenv())
-# api_key=os.environ.get("OPENAI_API_KEY")
+
 api_key=os.environ.get("GEMINI_API_KEY")
+api_key=os.environ.get("OPENAI_API_KEY")
 config = Config()
 connector = AccessibilityAIChat(config.DATA_PATH, config.VECTORSTORE_PATH, config.MODEL, config.TEMPERATURE, api_key)
 connector.initialize()

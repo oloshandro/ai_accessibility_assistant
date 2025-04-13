@@ -9,8 +9,5 @@ class Config:
     DATA_FILE_NAME = f"accessibility_data_with_text.csv"
     DATA_PATH =  os.path.join(os.sep, RAG_DIR, DATA_FILE_NAME).lstrip(os.sep)
 
-
-
-    OPENAI_MODEL = 'gpt-4o'
     MODEL = 'gemini-2.0-flash'
     TEMPERATURE = 0.4
